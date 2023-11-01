@@ -1,11 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BMI Calculator</title>
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #calculator {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
+    <div id="calculator">
+        <h1>Check your BMI</h1>
+        <p>Enter your weight and height below to check your BMI results</p>
+
+        <p>Put your weight in here (KG)</p>
+        <input type="number" id="weight" step="0.01">
+
+        <p>And your height in here (CM)</p>
+        <input type="number" id="height" step="0.01">
+
+        <p id="calculate-button"><button onclick="calculateBMI()">Calculate BMI</button></p>
+
+        <p id="result"></p>
+    </div>
+
+
+    <script>
+        function calculateBMI() {
+            
+            var weight = parseFloat(document.getElementById("weight").value);
+            var heightCm = parseFloat(document.getElementById("height").value);
+
+            
+            if (isNaN(weight) || isNaN(heightCm)) {
+                document.getElementById("result").textContent = "Please enter valid numbers for weight and height.";
+                return;
+            }
+
+            // Convert height from centimeters to meters
+            var heightM = heightCm / 100;
+
+            // Calculate BMI
+            var bmi = weight / (heightM * heightM);
+
+        
+            var category = "";
+            if (bmi <= 18.4) {
+                category = "Underweight";
+            } else if (bmi <= 24.9) {
+                category = "Normal Weight";
+            } else if (bmi <= 29.9) {
+                category = "Overweight";
+            } else {
+                category = "Obese";
+            }
+
+        
+            document.getElementById("result").textContent = "Your BMI is: " + bmi.toFixed(2) + " which means You are " + category;
+
     
+            document.getElementById("result").style.fontSize = "18px";
+            document.getElementById("result").style.color = "#333";
+            document.getElementById("result").style.fontWeight = "bold";
+            document.getElementById("result").style.marginTop = "20px";
+        }
+    </script>
 </body>
 </html>
