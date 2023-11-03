@@ -3,9 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>leaderboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-weight: bolder;
+            font-size: 40px;
+            font-style: bold;
+            
+        }
+
+        div {
+            margin: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 25px;
+            color:black;
+        }
+
+        span {
+            font-size: 30px;
+            color:black;
+            font-weight: bolder;
+        }
+
+        input[type="text"] {
+            font-size: 20px;
+            padding: 5px;
+            text-align: center;
+            width: 110px;
+            border-radius: 5px;
+            background-color:#A9A9A9;
+            
+        }
+
+        button {
+            font-size: 30px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all .2s ease-in-out;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,.2);
+            color:#272829;
+            border: none;
+            gap: 10px;
+        }
+
+        button:hover {
+            background-color:#09beda;
+        }
+    </style>
 </head>
 <body>
+    <h1>Leaderboard</h1>
     
+    <div>
+        <label>MIN:</label>
+        <span id="min">0</span>
+    </div>
+    
+    <div>
+        <label>MAX:</label>
+        <span id="max">0</span>
+    </div>
+    
+    <div>
+        <label>SCORE:</label>
+        <input type="text" id="score" readonly>
+    </div>
+    
+    <div>
+        <button onclick="appendNumber(1)">1</button>
+        <button onclick="appendNumber(2)">2</button>
+        <button onclick="appendNumber(3)">3</button>
+    </div>
+    
+    <div>
+        <button onclick="appendNumber(4)">4</button>
+        <button onclick="appendNumber(5)">5</button>
+        <button onclick="appendNumber(6)">6</button>
+    </div>
+    
+    <div>
+        <button onclick="appendNumber(7)">7</button>
+        <button onclick="appendNumber(8)">8</button>
+        <button onclick="appendNumber(9)">9</button>
+    </div>
+    
+    <div>
+        <button onclick="appendNumber(0)">0</button>
+    </div>
+
+     
+    <div>
+        <button onclick="enterScore()">ENTER</button>
+    </div>
+    
+    <script>
+        let currentScore = " ";
+        let minScore = 9999;
+        let maxScore = 0;
+        
+        function appendNumber(number) {
+            currentScore += number;
+            document.getElementById("score").value = currentScore;
+        }
+        
+        function enterScore() {
+            let  score =parseInt(currentScore);
+            if (score < minScore) {
+                minScore = score;
+                document.getElementById("min").textContent = minScore;
+            }
+            if (score > maxScore) {
+                maxScore = score;
+                document.getElementById("max").textContent = maxScore;
+            }
+            currentScore = " ";
+            document.getElementById("score").value = " ";
+        }
+    </script>
 </body>
 </html>
